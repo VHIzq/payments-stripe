@@ -31,7 +31,7 @@ import { ProductBoxComponent } from './components/product-box/product-box.compon
     HomeComponent,
     ProductsHeaderComponent,
     FiltersComponent,
-    ProductBoxComponent
+    ProductBoxComponent,
   ],
   imports: [
     BrowserModule,
