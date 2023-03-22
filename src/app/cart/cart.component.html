@@ -1,17 +1,193 @@
-<mat-card class="max-w-7xl mx-auto" *ngIf="cart.items.length">
+<mat-card
+  class="max-w-7xl mx-auto"
+  *ngIf="cart.items.length"
+>
   <table
     mat-table
     [dataSource]="dataSource"
-    class="w-full max-elevation-z8 "
-  ></table>
+    class="w-full mat-elevetaion-z8"
+  >
+    <!-- column def -->
+    <ng-container matColumnDef="product">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+      >
+        Product
+      </th>
+
+      <td
+        mat-cell
+        *matCellDef="let element"
+      >
+        <img
+          class="w-[100px] my-5"
+          src="{{ element.product }}"
+          alt="product"
+        />
+      </td>
+
+      <td
+        mat-footer-cell
+        *matFooterCellDef
+      ></td>
+    </ng-container>
+    <!-- column def -->
+    <ng-container matColumnDef="name">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+      >
+        Name
+      </th>
+
+      <td
+        mat-cell
+        *matCellDef="let element"
+      >
+      <p
+        class='truncate max-w-xs'
+      >
+        {{ element.name }}
+      </p>
+      </td>
+
+      <td
+        mat-footer-cell
+        *matFooterCellDef
+      ></td>
+    </ng-container>
+    <!-- column def -->
+    <ng-container matColumnDef="price">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+      >
+        Price
+      </th>
+
+      <td
+        mat-cell
+        *matCellDef="let element"
+      >
+        {{ element.price | currency }}
+      </td>
+
+      <td
+        mat-footer-cell
+        *matFooterCellDef
+      ></td>
+    </ng-container>
+    <!-- column def -->
+    <ng-container matColumnDef="quantity">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+      >
+        Quantity
+      </th>
+
+      <td
+        mat-cell
+        *matCellDef="let element"
+      >
+        {{ element.quantity }}
+      </td>
+
+      <td
+        mat-footer-cell
+        *matFooterCellDef
+      ></td>
+    </ng-container>
+    <!-- column def -->
+    <ng-container matColumnDef="total">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+      >
+        Total
+      </th>
+
+      <td
+        mat-cell
+        *matCellDef="let element"
+      >
+        {{ element.total }}
+      </td>
+
+      <td
+        mat-footer-cell
+        *matFooterCellDef
+      >
+      <span class="font-bold py-5 block">
+        {{ getTotal(cart.items) | currency }}
+      </span>
+    </td>
+    </ng-container>
+    <!-- column def -->
+    <ng-container matColumnDef="action">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+      >
+      <button
+        mat-raised-button 
+        color="warn"
+        class='float=right'
+      >Clear All</button>
+
+      </th>
+
+      <td
+        mat-cell
+        *matCellDef="let element"
+      >
+        {{ element.total }}
+      </td>
+
+      <td
+        mat-footer-cell
+        *matFooterCellDef
+      >
+      <span class="font-bold py-5 block">
+        {{ getTotal(cart.items) | currency }}
+      </span>
+    </td>
+    </ng-container>
+
+    <tr
+      mat-header-row
+      *matHeaderRowDef="displayedColumns"
+    ></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: displayedColumns"
+    ></tr>
+    <td
+      mat-footer-row
+      *matFooterRowDef="displayedColumns"
+    >
+      <button
+        mat-raised-button
+        routerLink="/home"
+      >
+        Continue Shopping
+      </button>
+    </td>
+  </table>
 </mat-card>
 
-<mat-card class="max-w-7xl mx-auto" *ngIf=" !cart.items.length">
+<mat-card
+  class="max-w-7xl mx-auto"
+  *ngIf="!cart.items.length"
+>
   <p>
     Your cart is empty
     <button
       mat-raised-button
       routerLink="/home"
-    >Shopping</button>
+    >
+      Shopping
+    </button>
   </p>
 </mat-card>
