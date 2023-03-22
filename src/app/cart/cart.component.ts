@@ -7,9 +7,28 @@ import { Cart, CartItem } from '../models/cart.model';
   styles: [],
 })
 export class CartComponent implements OnInit {
-  cart: Cart = {items: []}
+  cart: Cart = {items: [{
+    product: 'https://via.placeholder.com/150',
+    name: 'snickers',
+    price: 150,
+    quantity: 1,
+    id: 1
+  }]}
+
+  dataSource: Array<CartItem> = [];
+  
+   displayedColumns: Array<string> = [
+    'product',
+    'name',
+    'price',
+    'quantity',
+    'total',
+    'action'
+  ]
   
   constructor() { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.dataSource = this.cart.items;
+  }
 }

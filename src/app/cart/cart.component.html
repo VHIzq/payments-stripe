@@ -1,1 +1,17 @@
- 
+<mat-card class="max-w-7xl mx-auto" *ngIf="cart.items.length">
+  <table
+    mat-table
+    [dataSource]="dataSource"
+    class="w-full max-elevation-z8 "
+  ></table>
+</mat-card>
+
+<mat-card class="max-w-7xl mx-auto" *ngIf=" !cart.items.length">
+  <p>
+    Your cart is empty
+    <button
+      mat-raised-button
+      routerLink="/home"
+    >Shopping</button>
+  </p>
+</mat-card>
